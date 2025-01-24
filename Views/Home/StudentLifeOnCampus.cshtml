@@ -1,0 +1,62 @@
+﻿<!--Student Numbers: 221007790,220013856,221018946-->
+<!--Surname and Initials: Tshabalala G;T Phage,NN Mngwandi
+ Assignment Number: GA1
+ Purpose :Create a User-friendly website for CUT-->
+@{
+    ViewData["Title"] = "Student Life On Campus";
+}
+<h1>@ViewData["Title"]</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Student Management System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Carousel -->
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button>
+        </div>
+
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="~/images/cr1.jpg" alt="Campus Building" class="d-block w-80">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="~/images/cr2.jpg" alt="Group Study" class="d-block w-80">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="~/images/cr3.jpg" alt="Student connecting a circuit board" class="d-block w-80">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="~/images/cr4.jpg" alt="Rugby ball" class="d-block w-80">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="~/images/cr5.jpg" alt="Student in the library" class="d-block w-80">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="~/images/cr6.jpg" alt="Student walking down a graduation Stage" class="d-block w-80">
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>

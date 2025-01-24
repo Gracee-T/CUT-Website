@@ -1,0 +1,163 @@
+﻿<!--Student Numbers: 221007790,220013856,221018946--> 
+<!--Surname and Initials: Tshabalala G;T Phage,NN Mngwandi
+ Assignment Number: GA1
+ Purpose :Create a User-friendly website for CUT-->
+
+@using Microsoft.AspNetCore.Identity
+@using ASPNETCore_DB.Models
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASPNETCore_DB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ASPNETCore_DB.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> *@
+    <!-- CSS only -->
+    <style>
+       .middle-footer{
+            align-items: center;
+            display: flex;
+            justify-content:space-between;
+            padding-right:40px;
+            
+       }
+       footer{
+           background-color:cadetblue;
+       }
+
+    </style>
+
+    <!--End css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="container">
+
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img src="/images/Logo.jpeg" style="height:50px; width:100px"/></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About CUT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="StudentLifeOnCampus">Student Life On Campus</a>
+                            </li>
+
+
+
+
+                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                               
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SeedDatabase">Database</a>
+                                </li>
+
+                            }
+                            @if (SignInManager.IsSignedIn(User) || User.IsInRole("User"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Student</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SeedDatabase">Database</a>
+                                </li>
+                            }
+
+                            <partial name="_LoginPartial" />
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top-footer">
+        <div class="middle-footer">
+            <div class="campus">
+                <h2>Explore our campuses</h2>
+                <ul>
+                    <li><a href="https://www.cut.ac.za/campus/1/bloemfontein">Bloemfontein</a></li>
+                    <li><a href="https://www.cut.ac.za/campus/2/welkom">Welkom</a></li>
+                    <li><a href="https://www.cut.ac.za/restaurants-on-cut-campus">Resturants on Campus</a></li>
+                    <li><a href="https://www.cut.ac.za/disability-unit">Disability Unit(DU)</a></li>
+                    <li><a href="https://www.cut.ac.za/cge">Internationalism</a></li>
+                </ul>
+            </div>
+            <div class="administratives">
+                <h2>Administrative services and links</h2>
+                <ul>
+                    <li><a href="https://www.cut.ac.za/banking-details">Banking Details</a></li>
+                    <li><a href="https://servicedesk.cut.ac.za/">ICT Self-service</a></li>
+                    <li><a href="https://cut.southafricanorth.cloudapp.azure.com:9443/webselfservice#/signin">HR Self-service</a></li>
+                    <li><a href="https://www.cut.ac.za/tender-bulletins">Tenders</a></li>
+                    <li><a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3a%2f%2fwww.office.com%2flandingv2&response_type=code+id_token&scope=openid+profile+https%3a%2f%2fwww.office.com%2fv2%2fOfficeHome.All&response_mode=form_post&nonce=638501628372480454.MTlkMDEyNDItYjIwMi00ZjA2LWJlZGYtNzgyNjdhMjgxMmZjMGI1ZWU3YjMtNDI1YS00MzIwLWIzMzAtNzg5OWUyZDU2NGRj&ui_locales=en-US&mkt=en-US&client-request-id=dcfa1755-d745-4f6e-a8f6-d74ece11c5a5&state=bUj99Gp3vnVdSoYPOHT_N7CZM1Gj0w7iQ5cmMJj7dwO6ZcgBnvu6q5cz8XHOSh0bSWlHBXODoLZw0oD3UKe4dts-vg3C-Uoc8VXffpvV0p9V8FLpG3IvUvTGUkKRhNt5YotSvKTEUkkRIKg71IyfattOtH9flSGJAXQ3-Xbj-E9j1lmZSK1PjNJ7pChb0r1tmRGuL8zp-MtG7PIkI7C1N1-3WTfh1BbEWyHzrnQaqLrR0y42Up7s6LoivnFhNBQACs3D7M3NVFw_OWVMRuDY6Q&x-client-SKU=ID_NET6_0&x-client-ver=7.3.1.0&sso_nonce=AwABEgEAAAACAOz_BQD0__qIk1AlJ46lgP8IzsIVpPQY7_3l9v0tcDUlTcpHBJikHeL8kzvX1G2YUXY1Wz5rLcSod54Y92EH3TVPR_og078gAA&mscrid=dcfa1755-d745-4f6e-a8f6-d74ece11c5a5">Outlook</a></li>
+                </ul>
+            </div>
+            <div class="contact">
+                <ul>
+                    <h2>Contact Us</h2>
+                    <li>Bloemfontein Campus:+27(0) 51 507 3911</li>
+                    <li><a href="https://www.cut.ac.za/campus/1/bloemfontein-campus">Welkom Campus:+21(0) 57 910 3500</a></li>
+                    <li>
+                        Please address all correspondence to:<br />
+                        The Registrar<br />
+                        Central University of Technology, Free State<br />
+                        Private Bag X20539<br />
+                        BLOEMFONTEIN<br />
+                        9300<br />
+                        Republic of South Africa
+                    </li>
+                  
+                </ul>
+            </div>
+
+        
+        </div>
+        <div class="container">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i>LinkedIn</a></li>
+                <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i>Facebook</a></li>
+                <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i>Twitter</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            &copy; 2023 - ASPNETCore_DB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
